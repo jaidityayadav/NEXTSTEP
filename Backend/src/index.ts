@@ -18,7 +18,21 @@ const app = express();
 // Middleware
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
-app.use(cors());
+
+// CORS configuration
+app.use(cors({
+  origin: [
+    'http://localhost:5173', // Vite dev server default port
+    'http://localhost:3000', // Alternative frontend port
+    'http://localhost:4173', // Vite preview server port
+    'http://127.0.0.1:5173',
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:4173',
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+}));
 
 // Routes
 app.use(authRoutes);

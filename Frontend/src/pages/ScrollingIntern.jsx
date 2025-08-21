@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Navbarnew } from '../Components/Navbarnew';
+import backendUrl from '../api';
+
 export function InternshipPage() {
     const [internships, setInternships] = useState([]);
     const [disabledButtons, setDisabledButtons] = useState([]);
@@ -12,7 +14,7 @@ export function InternshipPage() {
 
     const apply = async (internship, index) => {
         try {
-            const response = await fetch('http://localhost:3001/apply', {
+            const response = await fetch(`http://${backendUrl}/student/applyInternship`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
