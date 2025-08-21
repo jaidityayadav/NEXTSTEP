@@ -19,7 +19,7 @@ export function Login() {
     const credentials = { email, password };
     
     try {
-      const response = await axios.post(`http://${backendUrl}/student/login`, credentials, {
+      const response = await axios.post(`${backendUrl}/student/login`, credentials, {
         headers: {
           'Content-Type': 'application/json',
         }
@@ -30,7 +30,7 @@ export function Login() {
 
       setTimeout(() => {
         setLoading(false);
-        navigate('/internship');
+        navigate('/dashboard');
       }, 2000);
 
     } catch (error) {

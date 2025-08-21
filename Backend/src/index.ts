@@ -6,11 +6,9 @@ import studentRoutes from './routes/studentRoutes';
 import profileRoutes from './routes/profileRoutes';
 import feedbackRoutes from './routes/feedbackRoutes';
 import internshipRoutes from './routes/internshipRoutes';
+import applicationRoutes from './routes/applicationRoutes';
+import noticeRoutes from './routes/noticeRoutes';
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import dotenv from 'dotenv';
-
-// Load environment variables
-dotenv.config();
 
 // Create Express app
 const app = express();

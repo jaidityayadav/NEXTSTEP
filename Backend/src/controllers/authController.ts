@@ -91,12 +91,47 @@ export const studentLogin: RequestHandler = async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({ message: "Wrong password, please try again" });
 
+        // --------- 🔥 STREAK LOGIC ---------
+        const today = new Date().toDateString();
+        const lastLogin = user.lastLoginDate?.toDateString();
+        let updatedStreak = user.streakCount ?? 0;
+
+        console.log("Last login:", lastLogin);
+        console.log("Today's date:", today);
+
+        if (lastLogin !== today) {
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+
+            if (lastLogin === yesterday.toDateString()) {
+                updatedStreak += 1; // continued streak
+            } else {
+                updatedStreak = 1; // reset streak
+            }
+
+            await prisma.student.update({
+                where: { id: user.id },
+                data: {
+                    streakCount: updatedStreak,
+                    lastLoginDate: new Date() // Set today's date
+                }
+            });
+
+            console.log(`Streak updated: ${updatedStreak}`);
+        }
+
+        // --------- 🔥 END STREAK LOGIC ---------
+
         const token = jwt.sign({ userId: user.id }, JWT_SECRET);
-        res.json({ token });
+        res.json({ token, streak: updatedStreak }); // Send updated streak in response
+
     } catch (error) {
+        console.error("Login error:", error);
         res.status(500).json({ error: "An unknown error occurred" });
     }
 };
+
+
 
 //@ts-ignore
 export const hrLogin: RequestHandler = async (req, res) => {

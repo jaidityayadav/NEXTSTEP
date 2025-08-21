@@ -1,13 +1,13 @@
 {
   "name": "intern",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -15,14 +15,16 @@
     "@react-oauth/google": "^0.12.1",
     "@react-pdf-viewer/core": "^3.12.0",
     "@react-pdf-viewer/default-layout": "^3.12.0",
+    "@vercel/analytics": "^1.5.0",
+    "@vercel/speed-insights": "^1.2.0",
     "axios": "^1.8.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "fetch": "^1.1.0",
     "flowbite-react": "^0.10.2",
     "gsap": "^3.12.7",
-    "intern": "file:",
     "link": "^2.1.1",
+    "lucide-react": "^0.487.0",
     "papaparse": "^5.5.2",
     "pdfjs-dist": "^3.5.141",
     "react": "^18.3.1",
@@ -32,11 +34,11 @@
     "react-hot-toast": "^2.5.2",
     "react-router-dom": "^6.28.2",
     "react-spinners": "^0.15.0",
+    "sonner": "^2.0.3",
     "tw-elements-react": "^1.0.0-alpha-end"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
-    "@types/bun": "latest",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
@@ -50,7 +52,6 @@
     "tailwindcss": "^3.4.17",
     "vite": "^6.0.5"
   },
-  "module": "index.ts",
   "peerDependencies": {
     "typescript": "^5.0.0"
   }

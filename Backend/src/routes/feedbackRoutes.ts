@@ -3,6 +3,6 @@ import { sendFeedback } from "../controllers/feedbackController";
 
 const router = express.Router();
 
-router.post("/feedback", sendFeedback);
+router.post("/feedback", sendFeedback)
 
 export default router;

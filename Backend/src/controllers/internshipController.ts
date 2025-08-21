@@ -13,3 +13,4 @@ export const getInternships:RequestHandler = async (req: Request, res: Response)
         res.json({ message: "error fetching internships, please try again later" })
     }
 }
+

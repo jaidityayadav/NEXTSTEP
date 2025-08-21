@@ -4,9 +4,9 @@ import Nextlogo from "../assets/Nextlogo.jpeg";
 import { Link, useNavigate } from "react-router-dom";
 import { Profile } from "./Profile";
 const navItems = [
-  { text: "Applied Internships", href: "/" },
-  { text: "Available Internships", href: "/" },
-  { text: "Contact Us", href: "/contact" },
+
+  { text: "Help", href: "/contact" },
+  { text: "Internships", href: "/internship" },
   
 ];
 
@@ -79,23 +79,27 @@ export function DashboardNav() {
 
   return (
     <div>
-
+  
       <div className="bg-gradient-to-r from-[#1c1a3b] to-[#379090]">
         <div className="flex justify-between items-center text-sm font-extrabold text-white px-5 pt-1 pb-4">
           <h1 className="text-xl">NextStep</h1>
-
+          
           <div className="ml-auto flex space-x-4 hidden md:flex pr-4 mt-4">
+          <Profile/>
             {renderNavItems()}
        
           </div>
           <div className="flex ">
           <div className="   md:block mr-4 mt-4" >
-          <Profile/>
+          
           </div>
+          <div className="mr-3 mt-3 md:hidden"><Profile/></div>
+           
           <button
-            className="block mt-3 md:hidden text-white text-2xl focus:outline-none"
+            className="flex block mt-3 md:hidden text-white text-2xl focus:outline-none"
             onClick={toggleSidebar}
           >
+          
             &#9776;
           </button>
           </div>

@@ -13,13 +13,16 @@ datasource db {
 }
 
 model Student {
-  id           String        @id @default(uuid())
-  username     String        @unique
-  name         String
-  email        String        @unique
-  password     String
-  applications Application[] // One student can apply to many internships
-  favorites    Favorite[] // One student can have many favorites
+  id              String        @id @default(uuid())
+  username        String        @unique
+  name            String
+  email           String        @unique
+  password        String
+  applications    Application[] // One student can apply to many internships
+  favorites       Favorite[]    // One student can have many favorites
+  resume          String?       // Path to the resume file (optional)
+  lastLoginDate   DateTime?     // 🕒 Tracks the last login date
+  streakCount     Int           @default(0) // 🔥 Tracks the streak
 }
 
 model HR {
@@ -28,7 +31,9 @@ model HR {
   name        String
   email       String        @unique
   password    String
-  internships Internships[] // One HR can create many internships
+  resume      Bytes?  
+  internships Internships[] // One HR can have many internships
+  notices      Notice[]  @relation("HRNotices")    // One HR can create many internships
 }
 
 model Feedback {
@@ -40,10 +45,11 @@ model Feedback {
 
 model Application {
   id           String      @id @default(uuid())
-  studentId    String // Foreign key to Student
-  internshipId String // Foreign key to Internships
+  studentId    String      // Foreign key to Student
+  internshipId String      // Foreign key to Internships
+  status       String      @default("Pending Review")
   student      Student     @relation(fields: [studentId], references: [id]) // Relationship to Student
-  internship   Internships @relation(fields: [internshipId], references: [id]) // Relationship to Internships
+  internship   Internships @relation(fields: [internshipId], references: [id], onDelete: Cascade) // Add onDelete here for cascading delete
 
   @@unique([studentId, internshipId]) // Enforce unique constraint on studentId and internshipId
 }
@@ -55,21 +61,32 @@ model Internships {
   location      String
   stipend       Int
   duration      Int
+  deadline      DateTime? 
   starting_date DateTime
   is_immediate  Boolean       @default(false)
-  created_at     DateTime @default(now())
-  hrId          String // Foreign key to HR
+  created_at    DateTime      @default(now())
+  hrId          String        // Foreign key to HR
   hr            HR            @relation(fields: [hrId], references: [id]) // Relationship to HR
-  applications  Application[] // Many applications for this internship
-  favorites     Favorite[] // Many favorites for this internship
+  applications  Application[] // Remove the onDelete here
+  favorites     Favorite[]    // Many favorites for this internship
 }
 
 model Favorite {
   id           String      @id @default(uuid())
-  studentId    String // Foreign key to Student
-  internshipId String // Foreign key to Internships
+  studentId    String      // Foreign key to Student
+  internshipId String      // Foreign key to Internships
   student      Student     @relation(fields: [studentId], references: [id]) // Relationship to Student
-  internship   Internships @relation(fields: [internshipId], references: [id]) // Relationship to Internships
+  internship   Internships @relation(fields: [internshipId], references: [id],onDelete: Cascade) // Relationship to Internships
 
   @@unique([studentId, internshipId]) // Enforce unique constraint on studentId and internshipId
+}
+
+model Notice {
+  id         String   @id @default(cuid())
+  title      String
+  message    String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  postedById String   // Foreign key to HR
+   postedBy   HR       @relation("HRNotices", fields: [postedById], references: [id])
 }

@@ -141,7 +141,7 @@ export function InternshipPage() {
             
             {/* Results count - smaller text on mobile */}
             <div className="mt-3 text-white text-xs sm:text-sm">
-              Showing {filteredJobs.length} internships
+              Showing {filteredJobs.length} jobs ,internships
               {searchQuery && ` matching "${searchQuery}"`}
               {selectedLocation && ` in ${selectedLocation}`}
             </div>

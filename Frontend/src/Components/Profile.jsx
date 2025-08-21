@@ -35,7 +35,7 @@ export function Profile() {
       }
 
       try {
-        const response = await axios.get(`http://${backendUrl}/student/profile`, {
+        const response = await axios.get(`${backendUrl}/student/profile`, {
           headers: { Authorization: token },
         });
         setUser(response.data);
@@ -72,8 +72,11 @@ export function Profile() {
           <span className="block truncate text-sm font-medium">{user.email}</span>
         </Dropdown.Header>
 
-        <Dropdown.Item href="">My Profile</Dropdown.Item>
-        <Dropdown.Item href="/">Resume Analysis</Dropdown.Item>
+        <a href="https://resume-analysis-run.streamlit.app/" target="_blank" rel="noopener noreferrer">
+  <Dropdown.Item>Resume Analysis</Dropdown.Item>
+</a>
+
+
         <Dropdown.Item onClick={() => setIsModalOpen(true)}>Change Password</Dropdown.Item>
 
         <Dropdown.Divider />

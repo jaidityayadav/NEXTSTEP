@@ -6,6 +6,7 @@ import backendUrl from "../api";
 import { toast } from 'react-hot-toast';
 import { HrNavbar } from "../Components/HrNavbar";
 import { SyncLoader } from "react-spinners";
+import { Link } from "react-router-dom";
 
 export function HRSignUp() {
   const [name, setName] = useState('');
@@ -13,12 +14,56 @@ export function HRSignUp() {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({
+    name : '',
+    username: '',
+    password: '',
+    email: ''
+  });
   const navigate = useNavigate();
 
+  const validateForm = () => {
+    let valid = true;
+    const newErrors = {
+      name:'',
+      username: '',
+      password: '',
+      email: ''
+    };
+     if(!/^[a-zA-Z]+$/.test(name)) {
+      newErrors.name = 'Name should contain only alphabets';
+      valid = false;
+    }
+    // Username validation (only alphabets)
+    if (!/^[a-zA-Z]+$/.test(username)) {
+      newErrors.username = 'Username should contain only alphabets';
+      valid = false;
+    }
+
+    // Password validation (minimum 6 characters)
+    if (password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters long';
+      valid = false;
+    }
+
+    // Email validation (must be a gmail email - contains @gmail.com)
+    if (!email.endsWith('@gmail.com')) {
+      newErrors.email = 'Only company emails are allowed (@gmail.com)';
+      valid = false;
+    }
+
+    setErrors(newErrors);
+    return valid;
+  };
+
   const handleSignup = async () => {
-    setLoading(true); // Show loader
+    if (!validateForm()) {
+      return;
+    }
+
+    setLoading(true);
     try {
-      const response = await axios.post(`http://${backendUrl}/hr/signup`, {
+      const response = await axios.post(`${backendUrl}/hr/signup`, {
         name,
         email,
         username,
@@ -29,11 +74,15 @@ export function HRSignUp() {
       setTimeout(() => {
         setLoading(false);
         navigate("/HR/Login");
-      }, 2000); // To show loader a little
+      }, 2000);
     } catch (error) {
       console.log(error);
-      toast.error("Signup failed!");
-      setLoading(false); // Hide loader
+      setLoading(false);
+      if (error.response && error.response.data && error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Signup failed!");
+      }
     }
   };
 
@@ -59,25 +108,35 @@ export function HRSignUp() {
             <p className="text-xl font-bold text-gray-600 text-center">Welcome HR, Sign Up Here!</p>
 
             <div className="mt-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">Name</label>
-              <input
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
-                type="text"
-                required
-              />
-            </div>
+  <label className="block text-gray-700 text-sm font-bold mb-2">Name</label>
+  <input
+    value={name}
+    onChange={(e) => setName(e.target.value)}
+    className={`text-gray-700 border rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700 ${
+      errors.name ? 'border-red-500' : 'border-gray-300'
+    }`}
+    type="text"
+    required
+  />
+  {errors.name && (
+    <p className="text-red-500 text-xs italic mt-1">{errors.name}</p>
+  )}
+</div>
 
             <div className="mt-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">Username</label>
               <input
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
+                className={`text-gray-700 border rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700 ${
+                  errors.username ? 'border-red-500' : 'border-gray-300'
+                }`}
                 type="text"
                 required
               />
+              {errors.username && (
+                <p className="text-red-500 text-xs italic mt-1">{errors.username}</p>
+              )}
             </div>
 
             <div className="mt-4">
@@ -85,10 +144,15 @@ export function HRSignUp() {
               <input
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
+                className={`text-gray-700 border rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700 ${
+                  errors.email ? 'border-red-500' : 'border-gray-300'
+                }`}
                 type="email"
                 required
               />
+              {errors.email && (
+                <p className="text-red-500 text-xs italic mt-1">{errors.email}</p>
+              )}
             </div>
 
             <div className="mt-4 flex flex-col justify-between">
@@ -96,10 +160,15 @@ export function HRSignUp() {
               <input
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
+                className={`text-gray-700 border rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700 ${
+                  errors.password ? 'border-red-500' : 'border-gray-300'
+                }`}
                 type="password"
                 required
               />
+              {errors.password && (
+                <p className="text-red-500 text-xs italic mt-1">{errors.password}</p>
+              )}
             </div>
 
             <div className="mt-8">
@@ -113,9 +182,9 @@ export function HRSignUp() {
             </div>
 
             <div className="mt-4 flex items-center w-full text-center">
-              <a href="/HR/login" className="font-bold text-xs text-gray-500 capitalize text-center w-full">
+              <Link to="/HR/Login" className="font-bold text-xs text-gray-500 capitalize text-center w-full">
                 Have an account? <span className="font-bold text-blue-700">Login</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

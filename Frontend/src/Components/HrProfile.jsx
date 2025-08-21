@@ -35,7 +35,7 @@ export function HrProfile() {
       }
 
       try {
-        const response = await axios.get(`http://${backendUrl}/Hr/profile`, {
+        const response = await axios.get(`${backendUrl}/Hr/profile`, {
           headers: { Authorization: token },
         });
         setUser(response.data);
@@ -72,8 +72,8 @@ export function HrProfile() {
           <span className="block truncate text-sm font-medium">{user.email}</span>
         </Dropdown.Header>
 
-        <Dropdown.Item>My Profile</Dropdown.Item>
-        <Dropdown.Item href="/">Resume Analysis</Dropdown.Item>
+     
+        
         <Dropdown.Item onClick={() => setShowResetPassword(true)}>
           Change Password
         </Dropdown.Item>
