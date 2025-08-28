@@ -16,6 +16,8 @@ import { EditInternship } from "./pages/EditInternship";
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import { Analytics } from "@vercel/analytics/react"
 
+import { ResumeAnalysis } from "./pages/ResumeAnalysis";
+
 
 function App() {
   return (
@@ -36,6 +38,7 @@ function App() {
           <Route path="/HR/EditInternship/:id" element={<EditInternship />} />
           <Route path="/HR/Login" element={<HRLogin />} />
           <Route path="/HR/HrDashboard" element={<HrDashboard />} />
+          <Route path="/ResumeAnalysis" element={<ResumeAnalysis />} />
         </Routes>
         <SpeedInsights />
         <Analytics />

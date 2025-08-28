@@ -39,6 +39,8 @@ app.use(studentRoutes);
 app.use(profileRoutes);
 app.use(feedbackRoutes);
 app.use(internshipRoutes);
+app.use(applicationRoutes);
+app.use(noticeRoutes);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
