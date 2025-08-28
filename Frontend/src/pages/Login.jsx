@@ -16,8 +16,12 @@ export function Login() {
     e.preventDefault();
     setLoading(true);
 
+    console.log('Login attempt started');
+    console.log('Backend URL:', backendUrl);
+    console.log('Full URL:', `http://${backendUrl}/student/login`);
+
     const credentials = { email, password };
-    
+
     try {
       const response = await axios.post(`${backendUrl}/student/login`, credentials, {
         headers: {

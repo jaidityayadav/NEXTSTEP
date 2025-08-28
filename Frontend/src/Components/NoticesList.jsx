@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import { 
-  Loader2, 
-  AlertCircle, 
-  ChevronLeft, 
-  ChevronRight, 
+import {
+  Loader2,
+  AlertCircle,
+  ChevronLeft,
+  ChevronRight,
   Megaphone,
   CalendarDays,
   User,
@@ -76,7 +76,7 @@ export function NoticesList() {
           ) : (
             <>
               {/* Notice Card (Sliding) */}
-              <div 
+              <div
                 key={notices[currentSlide].id}
                 className="p-6 rounded-lg transition-all duration-500 transform hover:scale-[1.01]"
                 style={{

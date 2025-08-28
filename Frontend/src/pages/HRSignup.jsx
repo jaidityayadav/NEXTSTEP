@@ -15,7 +15,7 @@ export function HRSignUp() {
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({
-    name : '',
+    name: '',
     username: '',
     password: '',
     email: ''
@@ -25,12 +25,12 @@ export function HRSignUp() {
   const validateForm = () => {
     let valid = true;
     const newErrors = {
-      name:'',
+      name: '',
       username: '',
       password: '',
       email: ''
     };
-     if(!/^[a-zA-Z]+$/.test(name)) {
+    if (!/^[a-zA-Z]+$/.test(name)) {
       newErrors.name = 'Name should contain only alphabets';
       valid = false;
     }
@@ -108,29 +108,27 @@ export function HRSignUp() {
             <p className="text-xl font-bold text-gray-600 text-center">Welcome HR, Sign Up Here!</p>
 
             <div className="mt-4">
-  <label className="block text-gray-700 text-sm font-bold mb-2">Name</label>
-  <input
-    value={name}
-    onChange={(e) => setName(e.target.value)}
-    className={`text-gray-700 border rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700 ${
-      errors.name ? 'border-red-500' : 'border-gray-300'
-    }`}
-    type="text"
-    required
-  />
-  {errors.name && (
-    <p className="text-red-500 text-xs italic mt-1">{errors.name}</p>
-  )}
-</div>
+              <label className="block text-gray-700 text-sm font-bold mb-2">Name</label>
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className={`text-gray-700 border rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700 ${errors.name ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                type="text"
+                required
+              />
+              {errors.name && (
+                <p className="text-red-500 text-xs italic mt-1">{errors.name}</p>
+              )}
+            </div>
 
             <div className="mt-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">Username</label>
               <input
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className={`text-gray-700 border rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700 ${
-                  errors.username ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`text-gray-700 border rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700 ${errors.username ? 'border-red-500' : 'border-gray-300'
+                  }`}
                 type="text"
                 required
               />
@@ -144,9 +142,8 @@ export function HRSignUp() {
               <input
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={`text-gray-700 border rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700 ${
-                  errors.email ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`text-gray-700 border rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700 ${errors.email ? 'border-red-500' : 'border-gray-300'
+                  }`}
                 type="email"
                 required
               />
@@ -160,9 +157,8 @@ export function HRSignUp() {
               <input
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className={`text-gray-700 border rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700 ${
-                  errors.password ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`text-gray-700 border rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700 ${errors.password ? 'border-red-500' : 'border-gray-300'
+                  }`}
                 type="password"
                 required
               />

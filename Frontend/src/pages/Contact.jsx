@@ -27,7 +27,7 @@ export function Contact() {
       }, {
         headers: { "Content-Type": "application/json" }
       });
-    
+
       toast.success("Message sent successfully!");
       setName("");
       setEmail("");
@@ -37,7 +37,7 @@ export function Contact() {
     } finally {
       setLoading(false);
     }
-    
+
   }
   return (
     <div

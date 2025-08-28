@@ -2,11 +2,13 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "dist/index.js",
-  "type": "commonjs", 
+  "type": "commonjs",
   "license": "MIT",
   "scripts": {
     "build": "tsc -p tsconfig.backend.json",
     "start": "node dist/index.js",
+    "dev": "tsc -p tsconfig.backend.json && node dist/index.js",
+    "dev:watch": "tsc -p tsconfig.backend.json --watch & node --watch dist/index.js",
     "postinstall": "prisma generate"
   },
   "dependencies": {

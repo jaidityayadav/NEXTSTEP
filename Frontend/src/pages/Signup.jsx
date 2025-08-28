@@ -14,7 +14,7 @@ export function SignUp() {
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({
-    name:'',
+    name: '',
     username: '',
     password: '',
     email: ''
@@ -24,7 +24,7 @@ export function SignUp() {
   const validateForm = () => {
     let valid = true;
     const newErrors = {
-      name:'',
+      name: '',
       username: '',
       password: '',
       email: ''
@@ -61,7 +61,7 @@ export function SignUp() {
     }
 
     setLoading(true);
-  
+
     try {
       const response = await axios.post(`${backendUrl}/student/signup`, {
         name,
@@ -69,14 +69,14 @@ export function SignUp() {
         username,
         password
       });
-  
+
       toast.success("Signup Successfully!");
-  
+
       setTimeout(() => {
         setLoading(false);
         navigate("/Login");
       }, 2000);
-  
+
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -87,7 +87,7 @@ export function SignUp() {
       }
     }
   };
-  
+
   return (
     <>
       <Navbarnew />
@@ -97,7 +97,7 @@ export function SignUp() {
           <SyncLoader color="#36d7b7" size={15} />
         </div>
       )}
-      
+
       <div className="bg-gradient-to-r from-[#1c1a3b] via-[#903d37] to-[#903d37] flex items-center justify-center h-screen w-full px-5 sm:px-0">
         <div className="flex bg-white rounded-lg shadow-lg border overflow-hidden max-w-sm lg:max-w-4xl w-full">
           <div
@@ -110,29 +110,27 @@ export function SignUp() {
             <p className="text-xl font-bold text-gray-600 text-center">Hello Students! Create An Account!</p>
 
             <div className="mt-4">
-  <label className="block text-gray-700 text-sm font-bold mb-2">Name</label>
-  <input
-    value={name}
-    onChange={(e) => setName(e.target.value)}
-    className={`text-gray-700 border rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700 ${
-      errors.name ? 'border-red-500' : 'border-gray-300'
-    }`}
-    type="text"
-    required
-  />
-  {errors.name && (
-    <p className="text-red-500 text-xs italic mt-1">{errors.name}</p>
-  )}
-</div>
+              <label className="block text-gray-700 text-sm font-bold mb-2">Name</label>
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className={`text-gray-700 border rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700 ${errors.name ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                type="text"
+                required
+              />
+              {errors.name && (
+                <p className="text-red-500 text-xs italic mt-1">{errors.name}</p>
+              )}
+            </div>
 
             <div className="mt-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">Username</label>
               <input
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className={`text-gray-700 border rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700 ${
-                  errors.username ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`text-gray-700 border rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700 ${errors.username ? 'border-red-500' : 'border-gray-300'
+                  }`}
                 type="text"
                 required
               />
@@ -146,9 +144,8 @@ export function SignUp() {
               <input
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={`text-gray-700 border rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700 ${
-                  errors.email ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`text-gray-700 border rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700 ${errors.email ? 'border-red-500' : 'border-gray-300'
+                  }`}
                 type="email"
                 required
               />
@@ -162,9 +159,8 @@ export function SignUp() {
               <input
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className={`text-gray-700 border rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700 ${
-                  errors.password ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`text-gray-700 border rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700 ${errors.password ? 'border-red-500' : 'border-gray-300'
+                  }`}
                 type="password"
                 required
               />

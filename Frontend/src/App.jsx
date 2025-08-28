@@ -30,18 +30,15 @@ function App() {
           <Route path="/About" element={<About />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Internship" element={<InternshipPage />} />
-          <Route path="/Dashboard" element={<Dashboard/>} />
+          <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/HR/Signup" element={<HRSignUp />} />
           <Route path="/HR/PostInternship" element={<PostInternship />} />
           <Route path="/HR/EditInternship/:id" element={<EditInternship />} />
           <Route path="/HR/Login" element={<HRLogin />} />
-          <SpeedInsights/>
-          <Analytics/>
           <Route path="/HR/HrDashboard" element={<HrDashboard />} />
-    
-          
-
         </Routes>
+        <SpeedInsights />
+        <Analytics />
       </BrowserRouter>
     </>
   )

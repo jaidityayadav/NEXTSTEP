@@ -4,7 +4,7 @@ import axios from "axios";
 import { HrNavbar } from "../Components/HrNavbar";
 import backendUrl from "../api";
 import { useNavigate } from "react-router-dom";
-import { 
+import {
   Briefcase,
   Building2,
   MapPin,
@@ -181,8 +181,8 @@ export const PostInternship = () => {
                       type="number"
                       step="0.01"
                       min="0"
-                      {...register("stipend", { 
-                        required: "Stipend is required", 
+                      {...register("stipend", {
+                        required: "Stipend is required",
                         min: { value: 0, message: "Must be positive" }
                       })}
                       className={`flex-1 px-4 py-2 border ${errors.stipend ? 'border-red-300 rounded-r-lg' : 'border-gray-300 rounded-r-lg'} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition`}
@@ -207,7 +207,7 @@ export const PostInternship = () => {
                     type="number"
                     min="1"
                     max="12"
-                    {...register("duration", { 
+                    {...register("duration", {
                       required: "Duration is required",
                       min: { value: 1, message: "Minimum 1 month" },
                       max: { value: 12, message: "Maximum 12 months" }
@@ -230,7 +230,7 @@ export const PostInternship = () => {
                   </label>
                   <input
                     type="date"
-                    {...register("starting_date", { 
+                    {...register("starting_date", {
                       required: isImmediate ? false : "Starting date is required"
                     })}
                     className={`w-full px-4 py-2 border ${errors.starting_date ? 'border-red-300' : 'border-gray-300'} rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition`}
