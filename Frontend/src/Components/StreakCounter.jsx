@@ -1,4 +1,4 @@
-import {Loader2, Flame, Calendar } from 'lucide-react';
+import { Loader2, Flame, Calendar } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import backendUrl from '../api';
@@ -16,7 +16,7 @@ export default function StreakCounter() {
         const response = await axios.get(`${backendUrl}/student/streak`, {
           headers: { 'Authorization': token }
         });
-        
+
         setStreak(response.data.streak || 0);
         setLastLogin(response.data.lastLogin || null);
       } catch (error) {
@@ -33,10 +33,10 @@ export default function StreakCounter() {
   const formatDate = (dateString) => {
     if (!dateString) return "Never";
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-      weekday: 'short', 
-      month: 'short', 
-      day: 'numeric' 
+    return date.toLocaleDateString('en-US', {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric'
     });
   };
 
@@ -76,11 +76,10 @@ export default function StreakCounter() {
             <div className="mt-4 pt-4 border-t">
               <div className="flex items-center gap-1">
                 {[...Array(Math.min(streak, 7))].map((_, i) => (
-                  <div 
-                    key={i} 
-                    className={`h-2 flex-1 rounded-full ${
-                      i === streak - 1 ? 'bg-orange-500' : 'bg-orange-300'
-                    }`}
+                  <div
+                    key={i}
+                    className={`h-2 flex-1 rounded-full ${i === streak - 1 ? 'bg-orange-500' : 'bg-orange-300'
+                      }`}
                   />
                 ))}
               </div>

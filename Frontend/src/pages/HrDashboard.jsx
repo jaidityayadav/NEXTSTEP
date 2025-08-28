@@ -33,7 +33,7 @@ export function HrDashboard() {
   };
 
   // Fetch application counts
- 
+
   // Delete internship
   const deleteInternship = async (id) => {
     const token = localStorage.getItem("authorization");
@@ -82,94 +82,94 @@ export function HrDashboard() {
             </div>
 
             {/* Analytics Cards */}
-            
+
 
             <HrNoticeCard />
           </div>
 
           {/* Middle Column: Manage Internships */}
           <div className={`bg-gray-100 rounded-xl h-fit shadow-md p-6 transition-all duration-300 ${currentInternships.length <= 2 ? "max-w-md mx-auto" : "max-w-4xl"}`}>
-  <div className="flex items-center justify-between mb-4">
-    <div className="flex items-center gap-3">
-      <Edit2 className="h-6 w-6 text-purple-600" />
-      <h2 className="text-lg font-bold text-gray-800">Manage Internships</h2>
-    </div>
-    <span className="text-sm px-3 py-1 bg-gray-100 rounded-full text-gray-600">
-      {internships.length} total
-    </span>
-  </div>
-
-  <div className="space-y-3 mb-4">
-    {currentInternships.length > 0 ? (
-      currentInternships.map((internship) => (
-        <div key={internship.id} className="p-3 border rounded-lg hover:bg-gray-50 transition-colors">
-          <div className="flex justify-between items-start">
-            <div className="flex-1">
-              <p className="font-medium text-gray-900">
-                {internship.position} @ {internship.company_name}
-              </p>
-              <div className="grid grid-cols-2 gap-2 mt-2 text-xs text-gray-600">
-                <span className="flex items-center gap-1">
-                  <MapPin className="h-3 w-3" /> {internship.location}
-                </span>
-                <span className="flex items-center gap-1">
-                  <IndianRupee className="h-3 w-3" /> {internship.stipend}/mo
-                </span>
-                <span className="flex items-center gap-1">
-                  <Calendar className="h-3 w-3" /> {internship.duration} months
-                </span>
-                <span className="flex items-center gap-1">
-                  <Clock className="h-3 w-3" /> {internship.duration}
-                </span>
-                <span className="flex items-center gap-1">
-                  <Calendar className="h-3 w-3" /> Start Date: {new Date(internship.starting_date).toLocaleDateString()}
-                </span>
-                <span className="flex items-center gap-1">
-                  <Calendar className="h-3 w-3" /> Deadline to Apply: {new Date(internship.deadline).toLocaleDateString()}
-                </span>
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <Edit2 className="h-6 w-6 text-purple-600" />
+                <h2 className="text-lg font-bold text-gray-800">Manage Internships</h2>
               </div>
+              <span className="text-sm px-3 py-1 bg-gray-100 rounded-full text-gray-600">
+                {internships.length} total
+              </span>
             </div>
-            <div className="flex gap-2 ml-2">
-              <a href={`/HR/editInternship/${internship.id}`} className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" title="Edit">
-                <Edit2 className="h-4 w-4" />
-              </a>
-              <button onClick={() => deleteInternship(internship.id)} className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Delete">
-                <Trash2 className="h-4 w-4" />
-              </button>
-            </div>
-          </div>
-        </div>
-      ))
-    ) : (
-      <div className="text-center py-8">
-        <FileText className="h-10 w-10 mx-auto text-gray-300" />
-        <p className="text-gray-500 mt-2">No internships available</p>
-      </div>
-    )}
-  </div>
 
-  {internships.length > internshipsPerPage && (
-    <div className="flex justify-between items-center mt-6">
-      <button
-        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-        disabled={currentPage === 1}
-      >
-        <ChevronLeft className="h-4 w-4" />
-      </button>
-      <div className="text-sm">
-        Page {currentPage} of {totalPages}
-      </div>
-      <button
-        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-        onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-        disabled={currentPage === totalPages}
-      >
-        <ChevronRight className="h-4 w-4" />
-      </button>
-    </div>
-  )}
-</div>
+            <div className="space-y-3 mb-4">
+              {currentInternships.length > 0 ? (
+                currentInternships.map((internship) => (
+                  <div key={internship.id} className="p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                    <div className="flex justify-between items-start">
+                      <div className="flex-1">
+                        <p className="font-medium text-gray-900">
+                          {internship.position} @ {internship.company_name}
+                        </p>
+                        <div className="grid grid-cols-2 gap-2 mt-2 text-xs text-gray-600">
+                          <span className="flex items-center gap-1">
+                            <MapPin className="h-3 w-3" /> {internship.location}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <IndianRupee className="h-3 w-3" /> {internship.stipend}/mo
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Calendar className="h-3 w-3" /> {internship.duration} months
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Clock className="h-3 w-3" /> {internship.duration}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Calendar className="h-3 w-3" /> Start Date: {new Date(internship.starting_date).toLocaleDateString()}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Calendar className="h-3 w-3" /> Deadline to Apply: {new Date(internship.deadline).toLocaleDateString()}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex gap-2 ml-2">
+                        <a href={`/HR/editInternship/${internship.id}`} className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" title="Edit">
+                          <Edit2 className="h-4 w-4" />
+                        </a>
+                        <button onClick={() => deleteInternship(internship.id)} className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Delete">
+                          <Trash2 className="h-4 w-4" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="text-center py-8">
+                  <FileText className="h-10 w-10 mx-auto text-gray-300" />
+                  <p className="text-gray-500 mt-2">No internships available</p>
+                </div>
+              )}
+            </div>
+
+            {internships.length > internshipsPerPage && (
+              <div className="flex justify-between items-center mt-6">
+                <button
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                  onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                  disabled={currentPage === 1}
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+                <div className="text-sm">
+                  Page {currentPage} of {totalPages}
+                </div>
+                <button
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                  onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                  disabled={currentPage === totalPages}
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
+            )}
+          </div>
 
 
           {/* Right Column */}

@@ -14,7 +14,7 @@ export function InternshipPage() {
 
     const apply = async (internship, index) => {
         try {
-            const response = await fetch(`http://${backendUrl}/student/applyInternship`, {
+            const response = await fetch(`${backendUrl}/student/applyInternship`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

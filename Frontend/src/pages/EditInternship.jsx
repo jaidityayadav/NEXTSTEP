@@ -3,12 +3,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { HrNavbar } from "../Components/HrNavbar";
 import backendUrl from "../api";
-import { 
-  Briefcase, 
-  Building, 
-  MapPin, 
-  Calendar, 
-  Clock, 
+import {
+  Briefcase,
+  Building,
+  MapPin,
+  Calendar,
+  Clock,
   Loader2,
   CheckCircle2,
   AlertCircle,
@@ -123,7 +123,7 @@ export function EditInternship() {
         }
       );
 
-     
+
       setTimeout(() => navigate("/HR/HrDashboard"));
       toast.success("Internship updated successfully!");
     } catch (error) {
