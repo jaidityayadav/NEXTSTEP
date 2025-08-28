@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 const navItems = [
   { text: "Home", href: "/" },
-  { text: "About Us", href: "/about" },
   { text: "Internships", href: "/internship" },
   { text: "Contact Us", href: "/contact" },
   { text: "SignUp", href: "/signup" },
@@ -31,19 +30,24 @@ export function Navbarnew() {
     const items = [];
 
     navItems.forEach((item) => {
-      items.push(
-        <Link key={item.href} to={item.href}>
-          <button className="mt-2 text-md hover:text-black">{item.text}</button>
-        </Link>
-      );
-
       if (item.text === "Home" && isLoggedIn) {
         items.push(
           <Link key="/dashboard" to="/dashboard">
             <button className="mt-2 text-md hover:text-black">Profile</button>
           </Link>
         );
+        // Insert Resume Analysis after Profile
+        items.push(
+          <Link key="/ResumeAnalysis" to="/ResumeAnalysis">
+            <button className="mt-2 text-md hover:text-black">Resume Analysis</button>
+          </Link>
+        );
       }
+      items.push(
+        <Link key={item.href} to={item.href}>
+          <button className="mt-2 text-md hover:text-black">{item.text}</button>
+        </Link>
+      );
     });
 
     if (isLoggedIn) {
@@ -60,6 +64,22 @@ export function Navbarnew() {
       );
     }
 
+    // Insert Resume Analysis for not logged in users between Profile and About Us
+    if (!isLoggedIn) {
+      const aboutUsIdx = items.findIndex(
+        (el) => el.props && el.props.to === "/about"
+      );
+      if (aboutUsIdx !== -1) {
+        items.splice(
+          aboutUsIdx,
+          0,
+          <Link key="/ResumeAnalysis" to="/ResumeAnalysis">
+            <button className="mt-2 text-md hover:text-black">Resume Analysis</button>
+          </Link>
+        );
+      }
+    }
+
     return items;
   };
 
@@ -67,17 +87,6 @@ export function Navbarnew() {
     const items = [];
 
     navItems.forEach((item) => {
-      items.push(
-        <Link
-          key={item.href}
-          to={item.href}
-          className="py-2 hover:underline text-left text-lg"
-          onClick={toggleSidebar}
-        >
-          {item.text}
-        </Link>
-      );
-
       if (item.text === "Home" && isLoggedIn) {
         items.push(
           <Link
@@ -89,7 +98,28 @@ export function Navbarnew() {
             Profile
           </Link>
         );
+        // Insert Resume Analysis after Profile
+        items.push(
+          <Link
+            key="/ResumeAnalysis"
+            to="/ResumeAnalysis"
+            className="py-2 hover:underline text-left text-lg"
+            onClick={toggleSidebar}
+          >
+            Resume Analysis
+          </Link>
+        );
       }
+      items.push(
+        <Link
+          key={item.href}
+          to={item.href}
+          className="py-2 hover:underline text-left text-lg"
+          onClick={toggleSidebar}
+        >
+          {item.text}
+        </Link>
+      );
     });
 
     if (isLoggedIn) {
@@ -107,6 +137,27 @@ export function Navbarnew() {
           Log Out
         </button>
       );
+    }
+
+    // Insert Resume Analysis for not logged in users between Profile and About Us
+    if (!isLoggedIn) {
+      const aboutUsIdx = items.findIndex(
+        (el) => el.props && el.props.to === "/about"
+      );
+      if (aboutUsIdx !== -1) {
+        items.splice(
+          aboutUsIdx,
+          0,
+          <Link
+            key="/ResumeAnalysis"
+            to="/ResumeAnalysis"
+            className="py-2 hover:underline text-left text-lg"
+            onClick={toggleSidebar}
+          >
+            Resume Analysis
+          </Link>
+        );
+      }
     }
 
     return items;

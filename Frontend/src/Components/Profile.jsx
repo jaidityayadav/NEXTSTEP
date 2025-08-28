@@ -58,10 +58,10 @@ export function Profile() {
     <>
       <Dropdown
         label={
-          
-<div class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-    <span class="font-medium text-gray-600 dark:text-gray-300">{user.name.charAt(0).toUpperCase()}</span>
-</div>
+
+          <div class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+            <span class="font-medium text-gray-600 dark:text-gray-300">{user.name.charAt(0).toUpperCase()}</span>
+          </div>
 
         }
         arrowIcon={false}
@@ -72,9 +72,9 @@ export function Profile() {
           <span className="block truncate text-sm font-medium">{user.email}</span>
         </Dropdown.Header>
 
-        <a href="https://resume-analysis-run.streamlit.app/" target="_blank" rel="noopener noreferrer">
-  <Dropdown.Item>Resume Analysis</Dropdown.Item>
-</a>
+        <Link to="/ResumeAnalysis">
+          <Dropdown.Item>Resume Analysis</Dropdown.Item>
+        </Link>
 
 
         <Dropdown.Item onClick={() => setIsModalOpen(true)}>Change Password</Dropdown.Item>
